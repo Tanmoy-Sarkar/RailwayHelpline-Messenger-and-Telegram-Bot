@@ -1,5 +1,7 @@
 import os,sys
+import schedule
 from flask import Flask, request
+from response import message_response 
 from pymessenger import Bot
 
 app = Flask("My echo bot")
@@ -42,7 +44,34 @@ def webhook():
 						# HANDLE TEXT MESSAGES
 						query = messaging_event['message']['text']
 						# ECHO THE RECEIVED MESSAGE
-						bot.send_text_message(sender_id, query)
+						
+						intent,entity,value, = message_response(query)
+
+						if intent == "buying":
+							response = "you can buy tickets from here" +"/n"
+							response += "https://www.esheba.cnsbd.com/#/"
+							print(response)
+
+						if intent == "schedule":
+							if value == "Silk City":
+								response = silk_city
+							if value == "Dhumketu Express":
+								response = dhumketu_express
+							if value == "Padma":
+								response = padma
+
+						if intent == "location_finding":
+							if value == "Silk City":
+								response = "Silk City is currently in Ullapara Station.It is late by 20 minutes off schedule"
+							if value == "Dhumketu Express":
+								response = "Dhumketu Express is currently in Sirajgong Station.It is on time to schedule"
+							if value == "Padma":
+								response = "Padma is currently in Tongi Station.It is late by 10 minutes"
+						
+						if intent == None:
+							response = "Please I don't understand. You can only ask me about buying tickets/schedule/location of value.Thank You"
+						
+					bot.send_text_message(sender_id,response)
 	return "ok", 200
 def log(message):
 	print(message)
