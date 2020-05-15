@@ -46,6 +46,7 @@ def webhook():
 						# ECHO THE RECEIVED MESSAGE
 						
 						intent,entity,value, = message_response(query)
+						response = ""
 
 						if intent == "buying":
 							response = "you can buy tickets from here" +"/n"
@@ -58,7 +59,7 @@ def webhook():
 							if value == "Dhumketu Express":
 								response = dhumketu_express
 							if value == "Padma":
-								response = padma
+								response = "The Padma Express departs from Dhaka Kamalapur station at 23:00 and after 5-6 hours its arrives in Rajshahi at 04:30. This time it holds the 759 number. In the return trip, Padma Express (760) starts the journey from Rajshahi station at 16:00 and ends the journey at 21:40. About 5-6 hours of time needed on this journey."
 
 						if intent == "location_finding":
 							if value == "Silk City":
@@ -82,3 +83,4 @@ def log(message):
 
 if __name__ == "__main__":
 	app.run(port=8000, use_reloader = True)
+	print(silk_city)
