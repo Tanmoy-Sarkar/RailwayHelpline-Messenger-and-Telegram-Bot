@@ -1,16 +1,18 @@
 from wit import Wit
+access_token = "OQJZGVBYC3YC2753FZXQAEIKQWIFBE7S"
+
+client = Wit(access_token=access_token)
 
 
 
 
 def message_response(message_text):
-	access_token = "OQJZGVBYC3YC2753FZXQAEIKQWIFBE7S"
-
-	client = Wit(access_token=access_token)
+	
 	intent=None
 	entity = None
 	value = None
 	response = client.message(message_text)
+	print(response)
 
 	try:
 		intent=response['entities']['intent'][0]['value']
@@ -18,5 +20,7 @@ def message_response(message_text):
 		value= response["entities"][entity][0]['value']
 	except:
 		pass
-	print(intent,entity,value)
-	return (intent,entity,value)
+	print(intent,value)
+	return (intent,value)
+
+message_response("give me schedule of padma train")

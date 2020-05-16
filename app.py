@@ -45,7 +45,7 @@ def webhook():
 						query = messaging_event['message']['text']
 						# ECHO THE RECEIVED MESSAGE
 						
-						intent,entity,value = message_response(query)
+						intent,value = message_response(query)
 						response = None
 
 						if intent == "buying":
@@ -82,5 +82,5 @@ def log(message):
 
 
 if __name__ == "__main__":
-	app.run(port=8000, use_reloader = True)
+	app.run(port=80, use_reloader = True)
 	
