@@ -1,7 +1,7 @@
 import os,sys
 import schedule
 from flask import Flask, request
-import response
+from response import response
 from pymessenger import Bot
 
 app = Flask("My echo bot")

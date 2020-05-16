@@ -1,11 +1,12 @@
 from wit import Wit
 
-access_token = "OQJZGVBYC3YC2753FZXQAEIKQWIFBE7S"
 
-client = Wit(access_token=access_token)
 
 
 def message_response(message_text):
+	access_token = "OQJZGVBYC3YC2753FZXQAEIKQWIFBE7S"
+
+	client = Wit(access_token=access_token)
 	intent=None
 	entity = None
 	value = None
