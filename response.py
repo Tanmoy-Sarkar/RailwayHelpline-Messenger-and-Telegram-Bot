@@ -17,6 +17,5 @@ def message_response(message_text):
 		value= response["entities"][entity][0]['value']
 	except:
 		pass
-
+	print(intent,entity,value)
 	return (intent,entity,value)
-# print(message_response(message_text))

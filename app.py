@@ -51,7 +51,7 @@ def webhook():
 						if intent == "buying":
 							response = "you can buy tickets from here" +"/n"
 							response += "https://www.esheba.cnsbd.com/#/"
-							print(response)
+							
 
 						if intent == "schedule":
 							if value == "Silk City":
@@ -83,4 +83,4 @@ def log(message):
 
 if __name__ == "__main__":
 	app.run(port=8000, use_reloader = True)
-	print(silk_city)
+	
