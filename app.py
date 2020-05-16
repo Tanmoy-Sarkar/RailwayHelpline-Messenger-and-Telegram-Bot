@@ -46,7 +46,7 @@ def webhook():
 						# ECHO THE RECEIVED MESSAGE
 						
 						intent,entity,value = message_response(query)
-						response = ""
+						response = None
 
 						if intent == "buying":
 							response = "you can buy tickets from here" +"/n"
