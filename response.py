@@ -1,5 +1,5 @@
 from wit import Wit
-access_token = "ERFWG3HTOK5TRYDHCJYJAKGZCIL2JKSH"
+access_tokenf = "ERFWG3HTOK5TRYDHCJYJAKGZCIL2JKSH"
 
 
 
@@ -7,7 +7,7 @@ access_token = "ERFWG3HTOK5TRYDHCJYJAKGZCIL2JKSH"
 
 
 def message_response(message_text):
-	client = Wit(access_token=access_token)
+	client = Wit(access_token=access_tokenf)
 	
 	intent=None
 	entity = None
