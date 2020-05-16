@@ -45,7 +45,7 @@ def webhook():
 						query = messaging_event['message']['text']
 						# ECHO THE RECEIVED MESSAGE
 						
-						intent,entity,value, = message_response(query)
+						intent,entity,value = message_response(query)
 						response = ""
 
 						if intent == "buying":
