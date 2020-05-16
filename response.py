@@ -1,5 +1,5 @@
 from wit import Wit
-access_token = "OQJZGVBYC3YC2753FZXQAEIKQWIFBE7S"
+access_token = "ERFWG3HTOK5TRYDHCJYJAKGZCIL2JKSH"
 
 
 
