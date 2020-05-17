@@ -1,15 +1,17 @@
 import os,sys
-import schedule
+
 from flask import Flask, request
 from response import message_response
-from pymessenger import Bot
 
+from pymessenger import Bot
+from wit import Wit
 app = Flask("My echo bot")
 
 FB_ACCESS_TOKEN = "EAAIyAxz4GsIBAPEhtpCau6adcNfjyJLyyaYTaTTnYjn7f2dGBbQWOZBGriO4F2rZCraBxmyRnweFElCJspRi53bFNZBQ2hMXXrQF8fP2ZCUQ6d2OZACpLsOMvp7hMS0ZAZC94bqCDeVBg2NlUBW12k91MbKr0uctutBZB3h7dxBfV5jK8CHJgXZBO"
 bot = Bot(FB_ACCESS_TOKEN)
 
 VERIFICATION_TOKEN = "hello"
+
 
 
 @app.route('/', methods=['GET'])
@@ -25,7 +27,7 @@ def verify():
 def webhook():
 	print(request.data)
 	data = request.get_json()
-	log(data)
+	# log(data)
 
 	if data['object'] == "page":
 		entries = data['entry']
@@ -43,36 +45,41 @@ def webhook():
 					if messaging_event['message'].get('text'):
 						# HANDLE TEXT MESSAGES
 						query = messaging_event['message']['text']
-						# ECHO THE RECEIVED MESSAGE
+						print(query)
+					# ECHO THE RECEIVED MESSAGE
 						
-						intent,value = message_response(query)
-						response = None
+						try:
+							intent,value = message_response(query)
+							print(intent)
+							response = None
 
-						if intent == "buying":
-							response = "you can buy tickets from here" +"/n"
-							response += "https://www.esheba.cnsbd.com/#/"
+							if intent == "buying":
+								response = "you can buy tickets from here" +"/n"
+								response += "https://www.esheba.cnsbd.com/#/"
+								
+
+							if intent == "schedule":
+								if value == "Silk City":
+									response = "The Silkcity Express departs from Dhaka Komlapur station at 14:45 and arrives in Rajshahi Chapainababganj station at 08:35. In the return trip, Its leaves from Chapainababganj station at 07:40  and after 6-7 hours reaches Komlapur station at13:30. It works 6 days a week. Sunday is the weekly holiday of SIlkcity Express."
+								if value == "Dhumketu Express":
+									response = "The Dhumketu Express departs from Dhaka to Kamalapur railway station at 06:00 AM and arrives at Rajshahi at 11:40PM. This time it holds 769 number and Dhumketu Express doesn’t run Dhaka to Rajshahi route on Saturday. In the return trip, Dhumketu Express starts the journey from Rajshahi at 23:20 and ends the journey in Kamalapur station at 04:45. This time it holds the 770 number. Friday is the holiday of Rajshahi to Dhaka route."
+								if value == "Padma":
+									response = "The Padma Express departs from Dhaka Kamalapur station at 23:00 and after 5-6 hours its arrives in Rajshahi at 04:30. This time it holds the 759 number. In the return trip, Padma Express (760) starts the journey from Rajshahi station at 16:00 and ends the journey at 21:40. About 5-6 hours of time needed on this journey."
+
+							if intent == "location_finding":
+								if value == "Silk City":
+									response = "Silk City is currently in Ullapara Station.It is late by 20 minutes off schedule"
+								if value == "Dhumketu Express":
+									response = "Dhumketu Express is currently in Sirajgong Station.It is on time to schedule"
+								if value == "Padma":
+									response = "Padma is currently in Tongi Station.It is late by 10 minutes"
 							
-
-						if intent == "schedule":
-							if value == "Silk City":
-								response = "The Silkcity Express departs from Dhaka Komlapur station at 14:45 and arrives in Rajshahi Chapainababganj station at 08:35. In the return trip, Its leaves from Chapainababganj station at 07:40  and after 6-7 hours reaches Komlapur station at13:30. It works 6 days a week. Sunday is the weekly holiday of SIlkcity Express."
-							if value == "Dhumketu Express":
-								response = "The Dhumketu Express departs from Dhaka to Kamalapur railway station at 06:00 AM and arrives at Rajshahi at 11:40PM. This time it holds 769 number and Dhumketu Express doesn’t run Dhaka to Rajshahi route on Saturday. In the return trip, Dhumketu Express starts the journey from Rajshahi at 23:20 and ends the journey in Kamalapur station at 04:45. This time it holds the 770 number. Friday is the holiday of Rajshahi to Dhaka route."
-							if value == "Padma":
-								response = "The Padma Express departs from Dhaka Kamalapur station at 23:00 and after 5-6 hours its arrives in Rajshahi at 04:30. This time it holds the 759 number. In the return trip, Padma Express (760) starts the journey from Rajshahi station at 16:00 and ends the journey at 21:40. About 5-6 hours of time needed on this journey."
-
-						if intent == "location_finding":
-							if value == "Silk City":
-								response = "Silk City is currently in Ullapara Station.It is late by 20 minutes off schedule"
-							if value == "Dhumketu Express":
-								response = "Dhumketu Express is currently in Sirajgong Station.It is on time to schedule"
-							if value == "Padma":
-								response = "Padma is currently in Tongi Station.It is late by 10 minutes"
-						
-						if intent == None:
-							response = "Please I don't understand. You can only ask me about buying tickets/schedule/location of value.Thank You"
-						
-					bot.send_text_message(sender_id,response)
+							if intent == None:
+								response = "Please I don't understand. You can only ask me about buying tickets/schedule/location of value.Thank You"
+							
+							bot.send_text_message(sender_id,response)
+						except:
+							bot.send_text_message(sender_id,"having problem with wit response")
 	return "ok", 200
 def log(message):
 	print(message)
@@ -82,5 +89,5 @@ def log(message):
 
 
 if __name__ == "__main__":
-	app.run(port=80, use_reloader = True)
+	app.run(port=8000, use_reloader = True)
 	
