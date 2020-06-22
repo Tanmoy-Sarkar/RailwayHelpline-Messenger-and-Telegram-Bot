@@ -76,6 +76,9 @@ def webhook():
 							
 							if intent == None:
 								response = "Please I don't understand. You can only ask me about buying tickets/schedule/location of value.Thank You"
+
+							if intent == "Greetings":
+								response = "Hi there, I am a rail bot at your service.You can only ask me about buying tickets/schedule/location of value.Thank You"
 							
 							bot.send_text_message(sender_id,response)
 						except:
