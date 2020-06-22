@@ -85,9 +85,6 @@ def log(message):
 	print(message)
 	sys.stdout.flush()
 
-	
-
-
 if __name__ == "__main__":
 	app.run(port=8000, use_reloader = True)
 	
