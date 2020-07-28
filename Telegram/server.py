@@ -55,7 +55,7 @@ def make_reply(msg,name):
 			if value == "Padma":
 				response = "Padma is currently in Tongi Station.It is late by 10 minutes"
 
-		if intent == "location_finding" and value == "location" or value == None:
+		if intent == "location_finding" and (value == "location" or value == None):
 			reply = "Which train you need location of Padma/Silk City/Dhumketu"
 			bot.send_message(reply,from_)
 			updates = bot.get_updates(offset=update_id)
@@ -74,10 +74,10 @@ def make_reply(msg,name):
 			return response
 		
 		if intent == None:
-			response = "Sorry \U0001f614 I don't understand. \nYou can only ask me about \nBuying tickets \nSchedule of train(Padma,Silk City,Dhumketu) \nLocation of train(Padma,Silk City,Dhumketu) \nThank You"
+			response = "Sorry \U0001f614 I don't understand. \nYou can only ask me about \n\U0001f449Buying tickets \n\U0001f449Schedule of train(Padma,Silk City,Dhumketu) \n\U0001f449Location of train(Padma,Silk City,Dhumketu) \nThank You"
 		
 		if intent == "Greetings":
-			response = "Hi " + name + "\U0001f600"+ " \n I am a rail bot at your service.You can only ask me about \nBuying tickets \nSchedule of train(Padma,Silk City,Dhumketu) \nLocation of train(Padma,Silk City,Dhumketu) \nThank You"
+			response = "Hi " + name + "\U0001f60A"+ " \n I am a rail bot \U0001f916 at your service\U0001f689\nYou can ask me about \n\U0001f449Buying tickets \n\U0001f449Schedule of train(Padma,Silk City,Dhumketu) \n\U0001f449Location of train(Padma,Silk City,Dhumketu) \nThank You"
 		
 
 	return response

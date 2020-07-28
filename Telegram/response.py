@@ -27,14 +27,11 @@ def message_response(message_text1):
 		value= response["entities"][entity][0]['value']
 	except:
 		pass
-	# 	entity = list(response['entities'])[1]
-	# 	value= response["entities"][entity][0]['value']
-	# except:
-	# 	pass
+	
 	
 	return (intent,value)
 
-print(message_response("Give"))
+
 
 def train_name(message):
 	train = None
@@ -46,4 +43,4 @@ def train_name(message):
 
 	return train
 
-print(train_name("dhumketu express"))
+
