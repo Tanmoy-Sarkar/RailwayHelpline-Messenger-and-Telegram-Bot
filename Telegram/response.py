@@ -34,7 +34,7 @@ def message_response(message_text1):
 	
 	return (intent,value)
 
-print(message_response("Where is padma"))
+print(message_response("Give"))
 
 def train_name(message):
 	train = None
