@@ -14,7 +14,7 @@ def make_reply(msg,name):
 		response = None
 
 		if intent == "buying":
-			response = "you can buy tickets from here" +"/n"
+			response = "you can buy tickets from here \n"
 			response += "https://www.esheba.cnsbd.com/#/"
 
 		if intent == "schedule" and value != "schedule":
@@ -46,7 +46,7 @@ def make_reply(msg,name):
 				response = "The Padma Express departs from Dhaka Kamalapur station at 23:00 and after 5-6 hours its arrives in Rajshahi at 04:30. This time it holds the 759 number. In the return trip, Padma Express (760) starts the journey from Rajshahi station at 16:00 and ends the journey at 21:40. About 5-6 hours of time needed on this journey."
 			return response
 			
-		if intent == "location_finding":
+		if intent == "location_finding" and value != "location":
 
 			if value == "Silk City":
 				response = "Silk City is currently in Ullapara Station.It is late by 20 minutes off schedule"
@@ -54,12 +54,30 @@ def make_reply(msg,name):
 				response = "Dhumketu Express is currently in Sirajgong Station.It is on time to schedule"
 			if value == "Padma":
 				response = "Padma is currently in Tongi Station.It is late by 10 minutes"
+
+		if intent == "location_finding" and value == "location" or value == None:
+			reply = "Which train you need location of Padma/Silk City/Dhumketu"
+			bot.send_message(reply,from_)
+			updates = bot.get_updates(offset=update_id)
+			updates = updates['result']
+			for item in updates:
+				update_id = item['update_id']
+				message = str(item['message']['text'])
+						
+			train= train_name(message)
+			if train == "Silk City":
+				response = "Silk City is currently in Ullapara Station.It is late by 20 minutes off schedule"
+			if train == "Dhumketu Express":
+				response = "Dhumketu Express is currently in Sirajgong Station.It is on time to schedule"
+			if train == "Padma":
+				response = "Padma is currently in Tongi Station.It is late by 10 minutes"
+			return response
 		
 		if intent == None:
-			response = "Please I don't understand. \n You can only ask me about \n Buying tickets \n Schedule of train(Padma,Silk City,Dhumketu) \n Location of train(Padma,Silk City,Dhumketu) \n Thank You"
+			response = "Sorry \U0001f614 I don't understand. \nYou can only ask me about \nBuying tickets \nSchedule of train(Padma,Silk City,Dhumketu) \nLocation of train(Padma,Silk City,Dhumketu) \nThank You"
 		
 		if intent == "Greetings":
-			response = "Hi " + name + " I am a rail bot at your service.You can only ask me about \n Buying tickets \n Schedule of train(Padma,Silk City,Dhumketu) \n Location of train(Padma,Silk City,Dhumketu) \n Thank You"
+			response = "Hi " + name + "\U0001f600"+ " \n I am a rail bot at your service.You can only ask me about \nBuying tickets \nSchedule of train(Padma,Silk City,Dhumketu) \nLocation of train(Padma,Silk City,Dhumketu) \nThank You"
 		
 
 	return response
