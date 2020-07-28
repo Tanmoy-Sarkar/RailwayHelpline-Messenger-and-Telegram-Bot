@@ -3,9 +3,7 @@ from response import message_response,train_name
 
 bot = telegram_chatbot("config.cfg")
 
-
-
-
+#making reply based on intention of the given message
 def make_reply(msg,name):
 	global update_id
 	if msg is not None:
