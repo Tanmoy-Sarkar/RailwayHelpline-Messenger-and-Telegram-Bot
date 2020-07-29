@@ -1,4 +1,5 @@
 from wit import Wit
+from tabulate import tabulate
 access_token = "ERFWG3HTOK5TRYDHCJYJAKGZCIL2JKSH"
 client = Wit(access_token=access_token)
 
@@ -28,6 +29,8 @@ def message_response(message_text1):
 	
 	return (intent,value)
 
+
+
 #getting particular train name
 def train_name(message):
 	train = None
@@ -38,5 +41,27 @@ def train_name(message):
 		pass
 
 	return train
+
+def schedule(train):
+	headers = ["From","Departure","To","Arrival","Off Day"]
+	if train == "Padma":
+		time = [["Rajshahi","16:00","Dhaka","21:40","Tuesday"],
+				["Dhaka","23:00","Rajshahi","04:30","Tuesday"]]
+	if train == "Silk City":
+		time = [["Rajshahi","07:40","Dhaka","13:30","Sunday"],
+				["Dhaka","14:45","Rajshahi","20:35","Sunday"]]
+	if train == "Dhumketu Express":
+		time = [["Rajshahi","23:20","Dhaka","04:45","Wednesday"],
+				["Dhaka","06:00","Rajshahi","11:40","Thurday"]]
+
+	return tabulate(time,headers=headers,tablefmt="pretty")
+
+def price():
+	headers = ["Shovon","Snigdha","AC Seat","AC Berth"]
+	price_of_ticket = [["340","570","680","1020"]]
+	return tabulate(price_of_ticket,headers=headers,tablefmt="pretty")
+
+
+
 
 
