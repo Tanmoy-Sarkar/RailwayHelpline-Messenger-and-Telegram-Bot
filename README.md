@@ -5,6 +5,6 @@ App is made with Python Flask Framework
 It is deployed in Heroku.
 Messenger:
 The page can be found at https://www.facebook.com/BangladeshRailwayHelpline/
-Due to facebook permission problem cannot bot cannot send message publicly.
+Due to facebook permission problem bot cannot send message publicly.
 Telegram:
 Bot can be found at http://t.me/Bangladesh_Railway_Helpline_Bot
