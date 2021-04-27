@@ -17,10 +17,11 @@ git clone https://github.com/Tanmoy-Sarkar/RailwayHelpline-Messenger-and-Telegra
 ## Get Wit Access Token
 Go to <a href="https://wit.ai/">Wit</a> make a account and get the access token
 
-## Messenger Bot
+## <span style="color:#00B2FF">Messenger Bot</span>
 
 ### Creating Bot
 Make a page in facebook and copy the FB access token and change the FB_ACCESS_TOKEN variable from the code
+Change the access_token variable in Messenger/response.py file
 Set up webhook (can follow <a href="https://www.youtube.com/watch?v=sskRz_lsY8g&list=PLyb_C2HpOQSC4M3lzzrql7DSppTeAxh-x&index=3"> Here </a>)
 
 
@@ -32,7 +33,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install flask,p
 pip install flask wit pymessenger requests
 ```
 
-## Usage
+### Usage
 
 Go to the "Messenger" directory
 
