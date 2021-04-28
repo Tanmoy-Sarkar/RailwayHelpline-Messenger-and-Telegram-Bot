@@ -51,8 +51,13 @@ Go to <a href="https://t.me/botfather">Botfather </a> and create a new bot. Copy
 
 Change the wit access_token variable in Telegram/response.py file
 
-Change token in Telegram/config.cfg file
+Make a config.cfg file in Telegram folder and put the telegram bot access token
 
+```python
+[creds]
+#add your token
+token =
+```
 
 ### Installation
 
