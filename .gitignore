@@ -3,3 +3,4 @@ Pipfile.lock
 token.txt
 requirements.txt
 __pycache__
+Telegram/config.cfg
