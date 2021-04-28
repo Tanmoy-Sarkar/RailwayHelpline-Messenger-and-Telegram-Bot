@@ -2,3 +2,4 @@ Pipfile
 Pipfile.lock
 token.txt
 requirements.txt
+__pycache__
